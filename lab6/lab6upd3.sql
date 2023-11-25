@@ -26,8 +26,12 @@ CREATE TABLE `stations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `line_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
+  `previous_station` int(10) unsigned DEFAULT NULL,
+  `next_station` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `line_id` (`line_id`),
+  CONSTRAINT `stations_ibfk_1` FOREIGN KEY (`line_id`) REFERENCES `lines` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2023-11-24 22:39:47
+-- 2023-11-25 07:12:30
